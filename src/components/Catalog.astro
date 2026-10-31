@@ -1,0 +1,45 @@
+---
+// RF-03, RF-04, RF-05 · Catálogo con filtro por tostión y botón Agregar.
+import data from '../data/products.json';
+import BeanArt from './BeanArt.astro';
+const roasts = ['Todas', 'Clara', 'Media', 'Oscura'];
+const cop = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
+---
+<section id="catalogo" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+  <h2 class="font-display text-3xl font-bold sm:text-4xl">Nuestro catálogo</h2>
+  <p class="mt-2 max-w-xl text-tierra/70">{data.products.length} cafés de especialidad. Elige tu tostión y agrégalos a tu pedido.</p>
+
+  <div class="mt-6 flex flex-wrap gap-2" role="group" aria-label="Filtrar por tostión" id="filtros">
+    {roasts.map((r, i) => (
+      <button type="button" data-roast={r} aria-pressed={i === 0 ? 'true' : 'false'}
+        class="rounded-full border border-cafe/30 px-4 py-2 text-sm font-medium transition hover:border-cafe aria-pressed:border-tierra aria-pressed:bg-tierra aria-pressed:text-crema">
+        {r}
+      </button>
+    ))}
+  </div>
+
+  <p id="filtro-estado" class="sr-only" role="status" aria-live="polite"></p>
+
+  <ul id="productos" class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {data.products.map((p) => (
+      <li data-id={p.id} data-roast={p.roast} class="flex flex-col overflow-hidden rounded-2xl border border-hueso bg-white shadow-sm">
+        <div class="flex justify-center bg-hueso px-6 py-6"><BeanArt color={p.color} label={p.name} class="h-40 w-auto" /></div>
+        <div class="flex flex-1 flex-col p-5">
+          <div class="flex items-start justify-between gap-3">
+            <h3 class="font-display text-xl font-bold">{p.name}</h3>
+            <span class="shrink-0 rounded-full bg-cafetal/10 px-2.5 py-1 text-xs font-semibold text-cafetal">{p.roast}</span>
+          </div>
+          <p class="mt-1 text-sm text-tierra/60">{p.origin}, Antioquia · {p.weight}</p>
+          <ul class="mt-3 flex flex-wrap gap-1.5" aria-label="Notas de cata">
+            {p.notes.map((n) => <li class="rounded bg-crema px-2 py-1 text-xs">{n}</li>)}
+          </ul>
+          <div class="mt-auto flex items-center justify-between pt-5">
+            <span class="text-lg font-bold">{cop.format(p.price)}</span>
+            <button type="button" data-add={p.id} class="rounded-full bg-tierra px-5 py-2 text-sm font-semibold text-crema transition hover:bg-cafe">Agregar</button>
+          </div>
+        </div>
+      </li>
+    ))}
+  </ul>
+  <p id="sin-resultados" class="mt-8 hidden text-tierra/60">No hay cafés con esa tostión.</p>
+</section>

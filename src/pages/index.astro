@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Catalog from '../components/Catalog.astro';
+import Origin from '../components/Origin.astro';
+import Order from '../components/Order.astro';
+import CartFab from '../components/CartFab.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base title="Tierra Alta Café · Café de origen de Antioquia" description="Café de especialidad de pequeñas fincas de Antioquia: catálogo, origen de cada grano y pedido en línea (simulado).">
+  <Header />
+  <main>
+    <Hero />
+    <Catalog />
+    <Origin />
+    <Order />
+  </main>
+  <Footer />
+  <CartFab />
+  <script>
+    import '../scripts/shop';
+  </script>
+</Base>

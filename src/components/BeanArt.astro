@@ -1,0 +1,15 @@
+---
+// Ilustración SVG propia de una bolsa de café (sin imágenes externas).
+interface Props { color?: string; label?: string; class?: string }
+const { color = '#8a4b2a', label = '', class: cls = '' } = Astro.props;
+---
+<svg viewBox="0 0 200 240" role="img" aria-label={label ? `Bolsa de café ${label}` : 'Bolsa de café'} class={cls}>
+  <path d="M40 40h120l12 24v150a14 14 0 0 1-14 14H42a14 14 0 0 1-14-14V64z" fill={color} />
+  <path d="M40 40h120l12 24H28z" fill="#00000026" />
+  <rect x="28" y="64" width="144" height="10" fill="#00000020" />
+  <rect x="52" y="104" width="96" height="84" rx="10" fill="#faf4ea" />
+  <ellipse cx="100" cy="132" rx="14" ry="20" fill={color} transform="rotate(20 100 132)" />
+  <path d="M95 114c6 9 2 17 10 36" stroke="#faf4ea" stroke-width="3.5" fill="none" stroke-linecap="round" />
+  <rect x="64" y="164" width="72" height="5" rx="2.5" fill={color} opacity=".7" />
+  <rect x="76" y="174" width="48" height="4" rx="2" fill={color} opacity=".45" />
+</svg>

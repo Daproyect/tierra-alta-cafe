@@ -1,0 +1,23 @@
+---
+// RF-02 · Hero con llamada a la acción.
+import BeanArt from './BeanArt.astro';
+---
+<section id="inicio" class="bg-tierra pt-16 text-crema">
+  <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 md:py-24">
+    <div>
+      <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-miel">Café de origen · Antioquia</p>
+      <h1 class="font-display text-4xl font-bold leading-tight sm:text-5xl">Del cafetal a tu taza, sin intermediarios.</h1>
+      <p class="mt-5 max-w-lg text-lg text-crema/80">
+        Granos de pequeñas fincas del suroeste y occidente antioqueño, tostados en lotes cortos para que cada café conserve su carácter.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#catalogo" class="rounded-full bg-miel px-6 py-3 font-semibold text-tierra transition hover:bg-white">Ver catálogo</a>
+        <a href="#origen" class="rounded-full border border-crema/40 px-6 py-3 font-semibold transition hover:bg-white/10">Conocer el origen</a>
+      </div>
+    </div>
+    <div class="relative mx-auto w-64 sm:w-72">
+      <div class="absolute inset-0 rounded-full bg-cafe/40 blur-3xl"></div>
+      <BeanArt color="#c9803d" label="Tierra Alta" class="relative drop-shadow-2xl" />
+    </div>
+  </div>
+</section>

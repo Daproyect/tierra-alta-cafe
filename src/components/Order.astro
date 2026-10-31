@@ -1,0 +1,67 @@
+---
+// RF-08, RF-09, RF-10, RF-12 · Resumen del pedido, formulario validado y pedidos recientes.
+const field = 'mt-1 w-full rounded-lg border border-cafe/30 bg-white px-3 py-2.5 text-base outline-none transition focus:border-miel focus:ring-2 focus:ring-miel/40 aria-[invalid=true]:border-cereza';
+const err = 'mt-1 hidden text-sm font-medium text-cereza';
+---
+<section id="pedido" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+  <h2 class="font-display text-3xl font-bold sm:text-4xl">Haz tu pedido</h2>
+  <p class="mt-2 max-w-xl text-tierra/70">Pago contraentrega. Este pedido es una simulación: se guarda solo en tu navegador.</p>
+
+  <div class="mt-8 grid gap-8 lg:grid-cols-5">
+    <div class="lg:col-span-2">
+      <h3 class="font-display text-xl font-bold">Tu selección</h3>
+      <p id="cart-empty" class="mt-3 rounded-xl border border-dashed border-cafe/30 p-5 text-tierra/60">Aún no has agregado cafés. Ve al <a href="#catalogo" class="font-semibold underline">catálogo</a>.</p>
+      <ul id="cart-items" class="mt-3 divide-y divide-hueso rounded-xl bg-white shadow-sm"></ul>
+      <div id="cart-total-row" class="mt-3 hidden items-center justify-between rounded-xl bg-tierra px-5 py-4 text-crema">
+        <span class="font-medium">Total</span>
+        <span id="cart-total" class="text-xl font-bold">$0</span>
+      </div>
+    </div>
+
+    <div class="lg:col-span-3">
+      <form id="order-form" novalidate class="rounded-2xl bg-white p-5 shadow-sm sm:p-7" aria-describedby="form-status">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="sm:col-span-2">
+            <label for="f-name" class="text-sm font-semibold">Nombre completo *</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required minlength="3" maxlength="80" class={field} aria-describedby="e-name" />
+            <p id="e-name" class={err}></p>
+          </div>
+          <div class="sm:col-span-2">
+            <label for="f-contact" class="text-sm font-semibold">Correo o celular *</label>
+            <input id="f-contact" name="contact" type="text" autocomplete="email" required maxlength="80" class={field} aria-describedby="e-contact" />
+            <p id="e-contact" class={err}></p>
+          </div>
+          <div>
+            <label for="f-city" class="text-sm font-semibold">Ciudad *</label>
+            <input id="f-city" name="city" type="text" autocomplete="address-level2" required maxlength="60" class={field} aria-describedby="e-city" />
+            <p id="e-city" class={err}></p>
+          </div>
+          <div>
+            <label for="f-address" class="text-sm font-semibold">Dirección *</label>
+            <input id="f-address" name="address" type="text" autocomplete="street-address" required minlength="5" maxlength="120" class={field} aria-describedby="e-address" />
+            <p id="e-address" class={err}></p>
+          </div>
+          <div class="sm:col-span-2">
+            <label for="f-notes" class="text-sm font-semibold">Notas (opcional)</label>
+            <textarea id="f-notes" name="notes" rows="3" maxlength="300" class={field}></textarea>
+          </div>
+        </div>
+        <p id="form-status" role="alert" class="mt-4 hidden rounded-lg bg-cereza/10 px-4 py-3 text-sm font-medium text-cereza"></p>
+        <button type="submit" class="mt-6 w-full rounded-full bg-tierra px-6 py-3.5 font-semibold text-crema transition hover:bg-cafe sm:w-auto">Enviar pedido</button>
+      </form>
+
+      <div id="order-confirm" tabindex="-1" role="status" class="mt-6 hidden rounded-2xl border border-cafetal/30 bg-cafetal/10 p-6">
+        <h3 class="font-display text-xl font-bold text-cafetal">¡Gracias por tu pedido!</h3>
+        <p class="mt-1">Tu número de pedido es <strong id="order-id"></strong>. Te contactaremos pronto para coordinar la entrega.</p>
+        <p class="mt-1 text-sm text-tierra/60">Simulación académica: no se envió ningún dato a un servidor.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="orders-wrap" class="mt-14 hidden">
+    <h3 class="font-display text-xl font-bold">Pedidos recientes en este navegador</h3>
+    <p class="mt-1 text-sm text-tierra/60">Se guardan solo en este equipo (primer nombre, ciudad y productos). Puedes borrarlos cuando quieras.</p>
+    <ul id="orders-list" class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"></ul>
+    <button id="orders-clear" type="button" class="mt-4 text-sm font-medium text-cafe underline">Borrar historial</button>
+  </div>
+</section>

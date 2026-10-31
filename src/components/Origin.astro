@@ -1,0 +1,41 @@
+---
+// RF-07 · Proceso y municipios de origen.
+import data from '../data/products.json';
+const steps = [
+  { n: '1', t: 'Cultivo', d: 'Variedades como Castillo y Caturra crecen bajo sombra, entre 1.300 y 2.100 metros de altura.' },
+  { n: '2', t: 'Beneficio', d: 'Se recolecta solo el fruto maduro y se procesa el mismo día: lavado, honey o natural.' },
+  { n: '3', t: 'Secado', d: 'El grano se seca al sol en camas o marquesinas hasta alcanzar su punto ideal de humedad.' },
+  { n: '4', t: 'Tostión', d: 'Tostamos en lotes pequeños y empacamos con válvula para conservar el aroma.' },
+];
+---
+<section id="origen" class="bg-hueso py-16">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <h2 class="font-display text-3xl font-bold sm:text-4xl">El origen de cada taza</h2>
+    <p class="mt-2 max-w-2xl text-tierra/70">Trabajamos con caficultores de seis municipios de Antioquia. Conocer de dónde viene el café cambia la forma de tomarlo.</p>
+
+    <ol class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {steps.map((s) => (
+        <li class="rounded-2xl bg-white p-5 shadow-sm">
+          <span class="flex h-9 w-9 items-center justify-center rounded-full bg-miel font-bold text-tierra">{s.n}</span>
+          <h3 class="mt-3 font-display text-lg font-bold">{s.t}</h3>
+          <p class="mt-1 text-sm text-tierra/70">{s.d}</p>
+        </li>
+      ))}
+    </ol>
+
+    <h3 class="mt-14 font-display text-2xl font-bold">Municipios cafeteros</h3>
+    <ul class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {data.municipalities.map((m) => (
+        <li class="rounded-2xl border border-cafe/15 bg-crema p-5">
+          <div class="flex items-center justify-between">
+            <h4 class="font-display text-lg font-bold">{m.name}</h4>
+            <span class="rounded-full bg-cafetal px-2.5 py-1 text-xs font-semibold text-white">{m.process}</span>
+          </div>
+          <p class="mt-1 text-xs font-medium uppercase tracking-wide text-cafe">{m.altitude}</p>
+          <p class="mt-2 text-sm text-tierra/75">{m.text}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-4 text-xs text-tierra/60">Alturas aproximadas y descriptivas. Marca y productos ficticios, con fines académicos.</p>
+  </div>
+</section>
